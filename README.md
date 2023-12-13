@@ -1,2 +1,2 @@
-# abb
+# ABB
 Technical document
