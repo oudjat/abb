@@ -11,11 +11,11 @@
 5 Documentation -Write a short recipe as a knowledge database solving one of the possible errors on the step 4.
 
 ## Answers                           
-4
-1 > 
-a. Public ip 89.32.42.4
-b. Connect with SSH protocol
-c. ssh support@89.32.42.4
+4  
+1 >   
+a. Public ip 89.32.42.4  
+b. Connect with SSH protocol  
+c. ssh support@89.32.42.4  
 
 2 > 
  2.1 -> Check connection between edge/server and new ip. 
