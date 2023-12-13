@@ -1,14 +1,14 @@
 # Technical document
 
-4  Networking << >>
-                            1. Who you connect to the edge 
-                                a. what ip range
-                                b. what protocol you should use to connect
-                                c. write the linux command or the connection string for this protocol 
-                            2. Write 3 different things you should check
-                            3. Write 5 different error that should happened
+4  Networking << >>  
+                            1. Who you connect to the edge  
+                                a. what ip range  
+                                b. what protocol you should use to connect  
+                                c. write the linux command or the connection string for this protocol   
+                            2. Write 3 different things you should check  
+                            3. Write 5 different error that should happened  
 
-5 Documentation -Write a short recipe as a knowledge database solving one of the possible errors on the step 4.
+5 Documentation -Write a short recipe as a knowledge database solving one of the possible errors on the step 4.  
 
 ## Answers                           
 4  
