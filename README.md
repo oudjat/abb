@@ -16,25 +16,25 @@
 a. Public ip 89.32.42.4  
 b. Connect with SSH protocol  
 c. ssh support@89.32.42.4  
+  
+2 >   
+ 2.1 -> Check connection between edge/server and new ip.   
+ 2.2 -> Maybe the vpn is down. Check connection with ping or traceroute between edge/server, another device in 192.168.2.0/23 . Check status vpn  
+ 2.3 -> Jump to monitoring tool server and check the connectivity between monitoring tool server and the new IP with ping, or traceroute command.  
 
-2 > 
- 2.1 -> Check connection between edge/server and new ip. 
- 2.2 -> Maybe the vpn is down. Check connection with ping or traceroute between edge/server, another device in 192.168.2.0/23 . Check status vpn
- 2.3 -> Jump to monitoring tool server and check the connectivity between monitoring tool server and the new IP with ping, or traceroute command.
-
-3 > 
- 3.1 -> VPN is down. Check connection.
- 3.2 -> edge/server can't access to new ip.
- 3.3 -> In 192.168.2.0/23 can't access to 10.2.3.0/32. The route not has created in edge/server. 
- 3.4 -> Human error. The new entry is wrong. 
- 3.5 -> Net interface is down
- 
-5
-
-Error: The monitoring tool is not storing any data even though the IP and database hostname have been added.
-
-Steps to Resolve:
-
+3 >   
+ 3.1 -> VPN is down. Check connection.  
+ 3.2 -> edge/server can't access to new ip.  
+ 3.3 -> In 192.168.2.0/23 can't access to 10.2.3.0/32. The route not has created in edge/server.   
+ 3.4 -> Human error. The new entry is wrong.   
+ 3.5 -> Net interface is down  
+   
+5  
+  
+Error: The monitoring tool is not storing any data even though the IP and database hostname have been added.   
+  
+Steps to Resolve:  
+  
     Verify SSH Connection to the Edge Machine:
     ssh -v support@89.32.42.4
 
