@@ -1,5 +1,5 @@
 # Technical document
-
+  
 4  Networking << >>  
                             1. Who you connect to the edge  
                                 a. what ip range  
