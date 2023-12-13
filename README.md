@@ -19,7 +19,7 @@ c. ssh support@89.32.42.4
   
 2 >   
  2.1 -> Check connection between edge/server and new ip.   
- 2.2 -> Maybe the vpn is down. Check connection with ping or traceroute between edge/server, another device in 192.168.2.0/23 . Check status VPN    
+ 2.2 -> Maybe the vpn is down. Check connection with ping or traceroute between edge/server, another device in 192.168.2.0/23. Check status VPN.    
  2.3 -> The VPN is UP, but monitoring server can't connect with 10.2.3.0/32 
 Check with ping or traceroute what's happen. Interface is UP?.  
 
