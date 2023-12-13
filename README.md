@@ -43,8 +43,3 @@ Steps to Resolve:
     b. Search interface network 192.168.2.0/23 with <<ip a>>. 
     c. Ping to other device in network 192.168.2.0/23. 
     d. VPN is up? check logs. Restart service. 
-
-   
-
-
-
