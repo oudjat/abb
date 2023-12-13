@@ -33,12 +33,12 @@ c. ssh support@89.32.42.4
   
 Error: The monitoring tool is not storing any data even though the IP and database hostname have been added.   
   
-Steps to Resolve:  
+Steps to Resolve:   
   
-  Verify SSH Connection to the Edge Machine:
-  ssh -v support@89.32.42.4
-  Check Network Configuration:
-  a. If connect, execute command <<ip a>> display all interfaces. Ensure that the interface connected to the factory has the correct IP (10.2.3.0/32) and is active. Command <<sudo ip link set "interface-factory" up>>
-  b. Search interface network 192.168.2.0/23 with <<ip a>>. 
-  c. Ping to other device in network 192.168.2.0/23. 
-  d. VPN is up? check logs. Restart service. 
+  Verify SSH Connection to the Edge Machine:  
+  ssh -v support@89.32.42.4  
+  Check Network Configuration:  
+  a. If connect, execute command <<ip a>> display all interfaces. Ensure that the interface connected to the factory has the correct IP (10.2.3.0/32) and is active. Command <<sudo ip link set "interface-factory" up>>  
+  b. Search interface network 192.168.2.0/23 with <<ip a>>.   
+  c. Ping to other device in network 192.168.2.0/23.   
+  d. VPN is up? check logs. Restart service.   
