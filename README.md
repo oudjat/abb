@@ -26,7 +26,7 @@ I had to edit the dashboard and select the data source again, but once done it a
 ![Alt text](screenshots/Dashboard-grafana.png)
 
   
-4  Networking << >>  
+### Networking << >>  
                             1. Who you connect to the edge  
                                 a. what ip range  
                                 b. what protocol you should use to connect  
