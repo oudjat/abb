@@ -1,6 +1,9 @@
 # Technical document
 
-### Answer 1
+### Automated provisioning
+Created playbook-deploy-docker.yml
+
+$ ansible-playbook playbook-deploy-docker.yml -i vm-ip, -u ubuntu
 
 
 
