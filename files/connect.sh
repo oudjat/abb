@@ -22,14 +22,14 @@ while true; do
     if ping -c 1 $router_ip > /dev/null 2>&1; then
         logger -t connect_info "Connectivity with the router is good."
         # Insert data into InfluxDB
-        curl -i -XPOST  "$INFLUXDB_URL" \
-        --header "Authorization: Token $INFLUXDB_TOKEN" \
+        curl -i -XPOST  'http://admin:ABBpassword@localhost:8086/api/v2/write?org=ABB&bucket=bucket1&precision=s' \
+        --header 'Authorization: Token pygVYfiCTMYlLKWR0Hip' \
         --data-raw "status value=1"
     else
         logger -t connect_info "No connectivity with the router."
         # Insert data into InfluxDB with a different value for failure
-        curl -i -XPOST "$INFLUXDB_URL" \
-        --header "Authorization: Token $INFLUXDB_TOKEN" \
+        curl -i -XPOST 'http://admin:ABBpassword@localhost:8086/api/v2/write?org=ABB&bucket=bucket1&precision=s' \
+        --header 'Authorization: Token pygVYfiCTMYlLKWR0Hip' \
         --data-raw "status value=0"
     fi
 

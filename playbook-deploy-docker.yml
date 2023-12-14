@@ -43,16 +43,10 @@
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/files/{{ item }}"
         dest: "/services/script/{{ item }}"
-        mode: "0755"
+        mode: "0751"
       with_items:
         - connect.sh
         - service.sh
-
-    - name: Download .env_connect file
-      ansible.builtin.copy:
-        src: "{{ playbook_dir }}/files/.env_connect"
-        dest: "/services/script/.env_connect"
-        mode: "0400"
 
     - name: Check if the service is running  
       command: "/services/script/service.sh start"

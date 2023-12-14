@@ -22,7 +22,7 @@
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/files/{{ item }}"
         dest: "/services/grafana-influx/{{ item }}"
-        mode: "0755"
+        mode: "0754"
       loop:
         - docker-compose.yml
         - dashboard.json
@@ -31,7 +31,7 @@
       ansible.builtin.copy:
         src: "files/.env"
         dest: "/services/grafana-influx/.env"
-        mode: '0400'  # Read-only permissions for owner
+        mode: '0600'  # Read-only permissions for owner
 
     - name: Execute docker-compose up -d
       ansible.builtin.command:
