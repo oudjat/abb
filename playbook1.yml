@@ -2,6 +2,9 @@
   hosts: all
   become: yes
 
+  vars:
+    gitlab_repo_url: "https://github.com/oudjat/abb.git"  
+
   tasks:
     - name: Install dependencies
       package:
@@ -17,8 +20,7 @@
    
     - name: Add Docker repository
       apt_repository:
-         repo: "deb [arch=amd64] https://download.docker.com/{{ ansible_system | lower }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
-         state: present
+         repo: deb [arch=amd64] https://download.docker.com/{{ ansible_system | lower }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable  
 
     - name: Update Apt packages
       apt:
@@ -33,28 +35,14 @@
           - docker-buildx-plugin
           - docker-compose-plugin
         state: present
-
-    - name: Add GitHub SSH key
-      copy:
-        src: files/abb
-        dest: /home/ubuntu/.ssh/abb
-        owner: ubuntu
-        group: ubuntu
-        mode: '0600'
-  
-    - name: Configure SSH to use ansible key for github.com
-      template:
-        src: files/ssh_config.j2
-        dest: /home/ubuntu/.ssh/config
-        owner: ubuntu
-        group: ubuntu
-        mode: '0644'
-  
-    - name: Clone a private repository
+        
+    - name: Clone or pull the GitLab repository
       git:
-        repo: git@github.com:oudjat/abb.git
-        key_file: /home/ubuntu/.ssh/abb
-        dest: /services/script
+        repo: "{{ gitlab_repo_url }}"
+        dest: "/services/script"
+        version: "main"
+        accept_hostkey: yes
+        update: yes
 
     - name: Move connect.sh files to /services/script
       command: "mv /services/script/files/connect.sh /services/script/"
@@ -62,14 +50,13 @@
     - name: Move service.sh files to /services/scripts
       command: "mv /services/script/files/service.sh /services/script/"
 
-        
-    - name: Start service and check
+    - name: Check if the service is running  
       command: "/services/script/service.sh start"
-      async: 1
+      async: 1 
       poll: 1
       register: service_status
       ignore_errors: true
-  
+    
     - name: Display service status
       debug:
         msg: "Service is {{ 'running' if service_status.rc == 0 else 'not running' }}"

@@ -1,17 +1,4 @@
 # Technical document
-
-### Automated provisioning
-Created playbook-deploy-docker.yml
-
-$ ansible-playbook playbook-deploy-docker.yml -i vm-ip, -u ubuntu
-
-
-
-![Alt text](screenshots/grafana-connectdb.png)
-
-![Alt text](screenshots/Dashboard-grafana.png)
-
-====================================
   
 4  Networking << >>  
                             1. Who you connect to the edge  
