@@ -1,4 +1,8 @@
 # Technical document
+
+![Alt text](screenshots/grafana-connectdb.png)
+
+
   
 4  Networking << >>  
                             1. Who you connect to the edge  
