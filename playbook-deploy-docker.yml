@@ -1,0 +1,67 @@
+---
+- name: Install Docker and Docker Compose
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install dependencies
+      package:
+        name:
+          - ca-certificates
+          - curl
+          - gnupg
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+   
+    - name: Add Docker repository
+      apt_repository:
+         repo: deb [arch=amd64] https://download.docker.com/{{ ansible_system | lower }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable  
+
+    - name: Update Apt packages
+      apt:
+        update_cache: yes
+
+    - name: Install Docker packages
+      package:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+
+    - name: Create /services/script directory
+      file:
+        path: "/services/script"
+        state: directory
+
+    - name: Copy connect.sh and service.sh scripts
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/{{ item }}"
+        dest: "/services/script/{{ item }}"
+        mode: "0755"
+      with_items:
+        - connect.sh
+        - service.sh
+
+    - name: Download .env_connect file
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/.env_connect"
+        dest: "/services/script/.env_connect"
+        mode: "0400"
+
+    - name: Check if the service is running  
+      command: "/services/script/service.sh start"
+      async: 1 
+      poll: 1
+      register: service_status
+      ignore_errors: true
+    
+    - name: Display service status
+      debug:
+        msg: "Service is {{ 'running' if service_status.rc == 0 else 'not running' }}"
+          

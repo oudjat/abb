@@ -1,0 +1,39 @@
+version: '3.6'
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    restart: always
+    env_file: .env  # Read variables from .env file
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: ${INFLUXDB_MODE}
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUXDB_USERNAME}  
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUXDB_PASSWORD}  
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUXDB_ORG}  
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUXDB_BUCKET}  
+      DOCKER_INFLUXDB_INIT_RETENTION: ${INFLUXDB_RETENTION}  
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUXDB_ADMIN_TOKEN}  
+    ports:
+      - '8086:8086'
+    volumes:
+      - ./volume-influxdb/data/influxdb2:/var/lib/influxdb2
+      - ./volume-influxdb/config/config.yml:/etc/influxdb2/config.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana-server
+    restart: always
+    env_file: .env  # Read variables from .env file
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GF_ADMIN_USER}  
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_ADMIN_PASSWORD}  
+      GF_INSTALL_PLUGINS:  
+    links:
+      - influxdb
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./volume-grafana/grafana_data:/var/lib/grafana
+      - ./volume-grafana/grafana-provisioning/:/etc/grafana/provisioning
+    user: 'root'
+

@@ -1,0 +1,55 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Ensure /services/grafana-influx folder exists
+      ansible.builtin.file:
+        path: /services/grafana-influx
+        state: directory
+      become: yes
+
+      #    - name: Download docker-compose.yml file
+      #      ansible.builtin.copy:
+      #        src: "files/docker-compose.yml"
+      #        dest: "/services/grafana-influx/docker-compose.yml"
+      #
+      #    - name: Download dashboard.json file
+      #      ansible.builtin.copy:
+      #        src: "files/dashboard.json"
+      #        dest: "/services/grafana-influx/dashboard.json"
+
+    - name: Copy docker-compose.yml and dashboard.json files
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/files/{{ item }}"
+        dest: "/services/grafana-influx/{{ item }}"
+        mode: "0755"
+      loop:
+        - docker-compose.yml
+        - dashboard.json
+
+    - name: Download .env file
+      ansible.builtin.copy:
+        src: "files/.env"
+        dest: "/services/grafana-influx/.env"
+        mode: '0400'  # Read-only permissions for owner
+
+    - name: Execute docker-compose up -d
+      ansible.builtin.command:
+        cmd: "docker compose up -d"
+        chdir: /services/grafana-influx
+      become: yes
+
+    - name: Check if port 8086 is open
+      ansible.builtin.wait_for:
+        host: localhost
+        port: 8086
+        delay: 5
+        timeout: 10
+
+    - name: Check if port 3000 is open
+      ansible.builtin.wait_for:
+        host: localhost
+        port: 3000
+        delay: 5
+        timeout: 10
+
