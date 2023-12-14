@@ -1,8 +1,14 @@
 # Technical document
 
+### Answer 1
+
+
+
 ![Alt text](screenshots/grafana-connectdb.png)
 
+![Alt text](screenshots/Dashboard-grafana.png)
 
+====================================
   
 4  Networking << >>  
                             1. Who you connect to the edge  
