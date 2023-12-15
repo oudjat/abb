@@ -10,7 +10,7 @@ The playbook is playbook-deploy-docker.yml which installs the docker package, co
 ### scripting.
 I'm used to making a script that runs only once. But after a while I understood that it should be running permanently, and here I already made a connect.sh script that checks the connection with the router and displays the message. Then I complicated it and going ahead to point 3 I added that it inserts the results into the influxdb database. While testing I saw that I needed to have control over the script to start and stop and I created service.sh to handle the script.
 
-Web app optimization
+### Web app optimization  
 The playbook playbook-deploy-grafana-influx.yml runs docker-compose and starts the influxdb and grafana service.
 
 Here you need to configure the database in grafana.
