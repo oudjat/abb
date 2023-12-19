@@ -6,6 +6,11 @@ I have worked everything from the same github repository.
 At this point I simulate a repository on github validated by ssh key. As it is a new machine I have to prepare everything and for this reason there are extra steps.
 
 The playbook is playbook-deploy-docker.yml which installs the docker package, connects to github, downloads the repository (theoretically there should only be scritps and docker-compose) and runs the point 2.
+To execute this playbook:
+
+```bash
+ansible-playbook playbook-deploy-docker.yml -i <<ip>> , -u <<user>>
+
 
 ### scripting.
 I'm used to making a script that runs only once. But after a while I understood that it should be running permanently, and here I already made a connect.sh script that checks the connection with the router and displays the message. Then I complicated it and going ahead to point 3 I added that it inserts the results into the influxdb database. While testing I saw that I needed to have control over the script to start and stop and I created service.sh to handle the script.
